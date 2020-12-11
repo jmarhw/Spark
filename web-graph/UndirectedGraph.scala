@@ -1,5 +1,4 @@
 import java.io._
-import scala.collection.mutable.ListBuffer
 import org.apache.spark.rdd.RDD
 
 object UndirectedGraph {
