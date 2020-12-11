@@ -3,7 +3,7 @@ import scala.collection.mutable.ListBuffer
 import org.apache.spark.rdd.RDD
 
 object UndirectedGraph {
-  val input = sc.textFile("/Users/joannamarchewka/Desktop/BDA/Sem-2/Spark/web-graphs/project/web-Stanford.txt")
+  val input = sc.textFile("/../web-Stanford.txt")
   val edges = input.filter(line => !line.contains("#")).map(line => line.split("\\W+"))
     .map(x => if (x(0).toInt < x(1).toInt) (x(0).toInt, x(1).toInt) else (x(1).toInt, x(0).toInt)).distinct // create (u,v) edge list
 
@@ -82,12 +82,12 @@ object Test {
     val averageClusterCoeff = graph.averageClusteringCoefficient(clusterCoeff)
 
     val output1 = clusterCoeff.leftOuterJoin(sc.parallelize(degrees)).map { case (x, (y, z: Option[Double])) => (x, y, z.get) }.collect()
-    val writer1 = new PrintWriter(new File("/Users/joannamarchewka/Desktop/BDA/Sem-2/Spark/web-graphs/project/output.txt"))
+    val writer1 = new PrintWriter(new File("/../output.txt"))
     for (opt <- output1) {
       writer1.write(opt.toString + "\n")
     }
     writer1.close()
-    val writer2 = new PrintWriter(new File("/Users/joannamarchewka/Desktop/BDA/Sem-2/Spark/web-graphs/project/average.txt"))
+    val writer2 = new PrintWriter(new File("/../average.txt"))
     writer2.write(s"The average clustering coefficient for the graph: ${averageClusterCoeff}")
     writer2.close()
 
