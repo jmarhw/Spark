@@ -1,0 +1,2 @@
+Data for the graph is taken from here: http://snap.stanford.edu/data/web-Stanford.html
+This program calculates the graph's average clustering coefficient. To calculate it I used the NoteIterator++ algorithm and the equation: cc(v) = 2*triangles_count(v)/(degree(v)*(degree(v)-1))
